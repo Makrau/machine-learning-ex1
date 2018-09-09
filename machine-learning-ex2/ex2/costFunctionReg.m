@@ -18,7 +18,17 @@ grad = zeros(size(theta));
 %               derivatives of the cost w.r.t. each parameter in theta
 
 
+[JTemp, gradTemp] = costFunction(theta, X, y);
 
+somaParcial = 0;
+grad(1) = gradTemp(1);
+
+for j = 2 : size(theta)
+	somaParcial += theta(j) ^ 2;
+	grad(j) = gradTemp(j) + (lambda / m) * theta(j);
+end
+
+J = JTemp + (lambda / (2 * m)) * somaParcial;
 
 
 
