@@ -19,9 +19,21 @@ grad = zeros(size(theta));
 %
 % Note: grad should have the same dimensions as theta
 %
+somatorioParcial = 0;
 
+for i = 1:m
+	somatorioParcial += (y(i) * log(sigmoid(X(i, :) * theta)) + (1 - y(i)) * log(1 - sigmoid( X(i, :) * theta )));
+end
 
+J = -(1 / m) * somatorioParcial;
 
+for j = 1:size(theta)
+	somatorioParcial = 0;
+	for i = 1:m
+		somatorioParcial += ((sigmoid(X(i, :) * theta) - y(i)) * X(i,j));
+	end
+	grad(j) = somatorioParcial / m;
+end
 
 
 

@@ -11,8 +11,8 @@ g = zeros(size(z));
 for i = 1 : size(g)(1)
 	for j = 1 : size(g)(2)
 		g(i, j) = (1 / (1 + e ^ -z(i, j)));
-	endfor
-endfor
+	end
+end
 % =============================================================
 
 end
