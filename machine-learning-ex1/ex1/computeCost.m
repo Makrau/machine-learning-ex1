@@ -15,8 +15,8 @@ J = 0;
 
 partialSum = 0;
 for i = 1 : m
-  partialSum = partialSum + (hypothesis(X(i, :), theta) - y(i))^2;
-endfor
+  partialSum = partialSum + (hypothesis(X(i, :)', theta) - y(i))^2;
+end
 J = (1 / (2 * m)) * partialSum;
 
 
@@ -26,5 +26,5 @@ end
 
 function h = hypothesis(X, theta)
   
-  h =  sum(theta' .* X);
+  h =  theta' * X;
 end

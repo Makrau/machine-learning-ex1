@@ -19,14 +19,28 @@ for iter = 1:num_iters
     
     % ============================================================
 
-    % Save the cost J in every iteration    
+
+	% calculating the sum
+	relativeTheta1 = 0;
+	relativeTheta2 = 0;
+	for i = 1 : m
+		relativeTheta1 = relativeTheta1 + (1 / m) * (hypothesis(X(i, :)', theta) - y(i));
+		relativeTheta2 = relativeTheta2 + (1 / m) * (hypothesis(X(i, :)', theta) - y(i)) * X(i, 2);
+	end
+
+        tempTheta1 = theta(1) - (alpha * relativeTheta1);
+        tempTheta2 = theta(2) - (alpha * relativeTheta2);
+
+        theta(1) = tempTheta1;
+        theta(2) = tempTheta2;
+    % Save the cost J in every iteration
     J_history(iter) = computeCost(X, y, theta);
 
 end
 
 end
 
-function h = hypothesis(x, theta)
+function h = hypothesis(X, theta)
   
-  h =  theta(1) + theta(2) * x;
+  h =  theta' * X;
 end
