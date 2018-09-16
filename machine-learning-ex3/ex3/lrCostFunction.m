@@ -41,19 +41,10 @@ fprintf('\nTamanho X: %dx%d\n', size(X));
 fprintf('Tamanho y: %dx%d\n', size(y));
 fprintf('Tamanho theta: %dx%d\n', size(theta));
 fprintf('Tamanho theta transposto * X transposto: %dx%d\n', size(theta' * X'));
-% função custo sem regularização
-J = -(1 / m) .* sum(y' * log(sigmoid(X * theta)) + (1-y') * log(1 - sigmoid(X * theta)));
 
-temp = theta;
-temp(1) = 0;
-% regularização da função de custo
- J = J + lambda/(2*m) * sum(temp.^2);
+J = -(1 / m) .* sum(y' * log(sigmoid(X * theta)) + (1-y') * log(1 - sigmoid(X * theta))) + lambda/(2*m) * sum(theta(2:end).^2);
 
-% Gradient sem regularização
-grad = (1 / m) .* X' * (sigmoid(X * theta) - y);
-
-% regularização do gradient
-grad = grad + lambda/m .*temp;
+grad = (1 / m) .* (X' * (sigmoid(X * theta) - y)) + lambda/m * [0;theta(2:end)];
 
 fprintf('Tamanho J: %dx%d\n', size(J));
 fprintf('Tamanho grad: %dx%d\n', size(grad));
