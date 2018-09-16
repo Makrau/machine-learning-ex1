@@ -37,16 +37,8 @@ grad = zeros(size(theta));
 %
 
 % =============================================================
-fprintf('\nTamanho X: %dx%d\n', size(X));
-fprintf('Tamanho y: %dx%d\n', size(y));
-fprintf('Tamanho theta: %dx%d\n', size(theta));
-fprintf('Tamanho theta transposto * X transposto: %dx%d\n', size(theta' * X'));
-
 J = -(1 / m) .* sum(y' * log(sigmoid(X * theta)) + (1-y') * log(1 - sigmoid(X * theta))) + lambda/(2*m) * sum(theta(2:end).^2);
 
 grad = (1 / m) .* (X' * (sigmoid(X * theta) - y)) + lambda/m * [0;theta(2:end)];
-
-fprintf('Tamanho J: %dx%d\n', size(J));
-fprintf('Tamanho grad: %dx%d\n', size(grad));
 
 end
