@@ -50,7 +50,7 @@ fprintf('\nRunning PCA on example dataset.\n\n');
 
 %  Run PCA
 [U, S] = pca(X_norm);
-
+fprintf('tamanho U: %d %d\ntamano S: %d %d\n', size(U), size(S));
 %  Compute mu, the mean of the each feature
 
 %  Draw the eigenvectors centered at mean of data. These lines show the

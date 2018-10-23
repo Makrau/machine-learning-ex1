@@ -19,13 +19,11 @@ S = zeros(n);
 % Note: When computing the covariance matrix, remember to divide by m (the
 %       number of examples).
 %
+covariance_matrix =  (X' * X)/m;
 
-
-
-
-
-
-
+[U, S, V] = svd(covariance_matrix);
+[U, S];
+fprintf('tamanho sigma: %d %d\n', size(covariance_matrix));
 % =========================================================================
 
 end
