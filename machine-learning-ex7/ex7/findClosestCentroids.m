@@ -20,14 +20,22 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 
-%
+% running throught every example
 for i = 1:size(X,1)
-	minimum_distance_to_centroid = norm(X(i, :) - centroids(1), 2);
-	index_minimum_distance = 1;
+	begin = true;
 
 	for j = 1:K
 		distance_to_centroid = norm(X(i, :) - centroids(j, :), 2);
 
+		if(begin)
+			minimum_distance_to_centroid = distance_to_centroid;
+			index_minimum_distance = j;
+			begin = false;
+		end
+
+		if(isnull(minimum_distance_to_centroid))
+			minimum_distance_to_centroid = distance_to_centroid;
+		end
 		if (distance_to_centroid < minimum_distance_to_centroid)
 			minimum_distance_to_centroid = distance_to_centroid;
 			index_minimum_distance = j;
@@ -35,12 +43,6 @@ for i = 1:size(X,1)
 	end
 	idx(i) = index_minimum_distance;
 end
-
-
-
-
-
-
 % =============================================================
 
 end

@@ -27,13 +27,18 @@ centroids = zeros(K, n);
 %
 for i = 1:K
 	counter = 0;
+	centroid_examples = [];
 	% encontrando todos exemplos pertecentes aquele centroide
 	for j = 1:m
 		if(idx(j) == i)
-			centroid_examples(:, counter + 1) = X(j);
+			centroid_examples(counter + 1, :) = X(j, :);
+			counter++;
 		end
 	end
-	centroids(i) = mean(centroid_examples);
+
+	for a = 1:n
+		centroids(i, :) = mean(centroid_examples);
+	end
 end
 
 
