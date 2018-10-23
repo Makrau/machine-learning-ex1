@@ -18,18 +18,38 @@ grad = zeros(size(theta));
 %
 %               You should set J to the cost and grad to the gradient.
 %
+fprintf('size of theta: %d %d\n', size(theta));
+fprintf('size of X: %d %d\n', size(X));
+fprintf('m: %d\n', m);
+%J = ((1/2*m) * sum(((X * theta) - y).^2)) + ((lambda/2*m) * ((sum(theta.^2) - (theta(1)^2))));
 
+for i = 1:m
+	J = J + (X(i, :) * theta - y(i)) ^ 2;
+end
 
+J = J/(2 * m);
 
+regularization = 0;
 
+for j = 2:size(theta)
+	regularization = regularization + theta(j) ^ 2;
+end
 
+regularization = regularization * (lambda/(2 * m));
 
+J = J + regularization;
 
-
-
-
-
-
+for i = 1:m
+	grad(1) = grad(1) + (X(i, :) * theta - y(i)) * X(1, 1);
+end
+	grad(1) = grad(1) / m;
+for j = 2:size(grad)
+	for i = 1:m
+		grad(j) = grad(j) + (X(i, :) * theta - y(i)) * X(i, j);
+	end
+	grad(j) = grad(j) / m;
+	grad(j) = grad(j) + (lambda/m) * theta(j);
+end
 % =========================================================================
 
 grad = grad(:);
