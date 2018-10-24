@@ -18,9 +18,6 @@ grad = zeros(size(theta));
 %
 %               You should set J to the cost and grad to the gradient.
 %
-fprintf('size of theta: %d %d\n', size(theta));
-fprintf('size of X: %d %d\n', size(X));
-fprintf('m: %d\n', m);
 %J = ((1/2*m) * sum(((X * theta) - y).^2)) + ((lambda/2*m) * ((sum(theta.^2) - (theta(1)^2))));
 
 for i = 1:m
